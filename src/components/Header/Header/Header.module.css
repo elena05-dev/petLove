@@ -1,0 +1,78 @@
+header {
+    width: 100%;
+}
+
+.headerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 28px;
+}
+
+
+.headerContainer>nav {
+    display: none;
+}
+
+.headerContainer>a {
+    flex-shrink: 0;
+}
+
+.headerActions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.headerActions> :first-child {
+    display: none;
+}
+
+.burgerButton {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    flex-shrink: 0;
+}
+
+.logo {
+    width: 76px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.logo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+@media screen and (min-width: 768px) {
+    .logo {
+        width: 105px;
+        height: 28px;
+    }
+
+    .headerActions> :first-child {
+        display: flex;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .headerContainer {
+        padding-top: 43px;
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+
+    .headerContainer>nav {
+        display: flex;
+        align-items: center;
+    }
+
+    .headerActions> :first-child {
+        display: flex;
+    }
+}

@@ -1,0 +1,98 @@
+.mainNav {
+    display: none;
+    gap: 10px;
+    box-sizing: border-box;
+}
+
+.mainNav a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 15px 20px;
+
+    border: 1px solid #26262626;
+    border-radius: 30px;
+
+    font-family: "Manrope", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.03em;
+    color: #262626;
+
+    text-decoration: none;
+}
+
+.mainNav a:hover,
+.mainNav a:focus,
+.mainNav a.active {
+    border-color: #f6b83d;
+}
+
+.mobileNav {
+    position: absolute;
+    top: 236px;
+    right: 49px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 10px;
+
+    width: 119px;
+    height: 164px;
+}
+
+.mobileNav a {
+    width: 119px;
+    height: 48px;
+
+    padding: 14px 20px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 30px;
+    font-family: "Manrope", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: -0.03em;
+    color: #fff;
+}
+
+.mobileNav a:hover,
+.mobileNav a:focus,
+.mobileNav a.active {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.light a {
+    border: 1px solid rgba(38, 38, 38, 0.4);
+    font-family: "Manrope", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.03em;
+    color: #262626;
+}
+
+.light a:hover,
+.light a:focus,
+.light a:active {
+    border-color: #f6b83d;
+}
+
+@media screen and (min-width: 768px) {
+    .mobileNav {
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 369px
+    }
+
+    .mobileNav a {
+        width: 120px;
+        height: 170px;
+    }
+}

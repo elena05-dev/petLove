@@ -1,0 +1,51 @@
+.mobileMenu {
+    position: fixed;
+    top: 0;
+    right: 0;
+
+    width: 218px;
+    height: 100vh;
+
+
+}
+
+.yellow {
+    background: #f6b83d;
+}
+
+.light {
+    background: #f9f9f9;
+}
+
+.closeButton {
+    position: absolute;
+    top: 28px;
+    right: 20px;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+}
+
+.closeButton img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.closeButton.yellow img {
+    filter: brightness(0) invert(1);
+}
+
+.closeButton.light img {
+    filter: none;
+}
+
+@media screen and (min-width: 768px) {
+    .mobileMenu {
+        width: 374px;
+    }
+}
