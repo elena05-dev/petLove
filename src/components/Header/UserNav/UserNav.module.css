@@ -9,6 +9,7 @@
 }
 
 .userNav button {
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,6 +37,7 @@
 }
 
 .userProfile {
+
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -56,10 +58,38 @@
 }
 
 .userName {
+
     font-family: "Manrope", sans-serif;
     font-weight: 700;
     font-size: 20px;
     line-height: 1;
     letter-spacing: -0.03em;
     color: #262626;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+    .userNav {
+        width: auto;
+        height: 50px;
+        gap: 8px;
+    }
+
+    .userNav button {
+        display: none;
+    }
+
+    .userProfile {
+        width: auto;
+        height: 50px;
+    }
+
+    .userIcon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .userName {
+        display: block;
+        color: #fff;
+    }
 }

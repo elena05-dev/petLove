@@ -1,0 +1,321 @@
+.container {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 720px;
+    margin: 32px auto 48px;
+    padding: 36px;
+    background-color: #fffaf0;
+    border: 1px solid rgba(38, 38, 38, 0.05);
+    border-radius: 24px;
+    box-shadow: 0 8px 28px rgba(38, 38, 38, 0.06);
+}
+
+.title {
+    margin: 0 0 12px;
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+    color: #262626;
+}
+
+.description {
+    margin: 0 0 28px;
+    font-family: "Manrope", sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 1.6;
+    letter-spacing: -0.02em;
+    color: #66645f;
+}
+
+.section {
+    margin-bottom: 28px;
+}
+
+.sectionTitle {
+    margin: 0 0 16px;
+    font-family: "Manrope", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+    color: #262626;
+}
+
+.options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.options button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 48px;
+    padding: 12px 20px;
+    border: 1px solid #e5e1d8;
+    border-radius: 16px;
+    background-color: #ffffff;
+    color: #262626;
+    font-family: "Manrope", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.options button:hover {
+    border-color: #f6b83d;
+    background-color: #fffaf0;
+}
+
+.options button:focus-visible,
+.actions button:focus-visible {
+    outline: 3px solid rgba(246, 184, 61, 0.45);
+    outline-offset: 3px;
+}
+
+.options button.selected,
+.selected {
+    border: 2px solid #f6b83d;
+    background-color: #fff1cf;
+    box-shadow: 0 0 0 2px rgba(246, 184, 61, 0.08);
+}
+
+.container label {
+    display: block;
+    margin: 0 0 8px;
+    color: #262626;
+    font-family: "Manrope", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.container input,
+.container textarea {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0 0 20px;
+    padding: 14px 16px;
+    border: 1px solid #dedbd3;
+    border-radius: 12px;
+    background-color: #ffffff;
+    color: #262626;
+    font-family: "Manrope", sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.container input::placeholder,
+.container textarea::placeholder {
+    color: #96938b;
+}
+
+.container input:focus,
+.container textarea:focus {
+    outline: none;
+    border-color: #e6a719;
+    box-shadow: 0 0 0 3px rgba(246, 184, 61, 0.18);
+}
+
+.container textarea {
+    resize: vertical;
+    min-height: 110px;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.actions button {
+    min-height: 48px;
+    padding: 13px 24px;
+    border: 1px solid transparent;
+    border-radius: 30px;
+    background-color: #f6b83d;
+    color: #262626;
+    font-family: "Manrope", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.4;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.actions button:hover:not(:disabled) {
+    background-color: #f9b020;
+}
+
+.actions button:first-child:not(:only-child) {
+    border-color: #e5e1d8;
+    background-color: #ffffff;
+    color: #262626;
+}
+
+.actions button:first-child:not(:only-child):hover:not(:disabled) {
+    border-color: #f6b83d;
+    background-color: #fffaf0;
+}
+
+.actions button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.resultItem {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 14px;
+    font-family: "Manrope", sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.resultLabel {
+    color: #77746c;
+    font-weight: 500;
+}
+
+.resultValue {
+    color: #262626;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.progress {
+    margin-bottom: 28px;
+}
+
+.progressInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-family: "Manrope", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #77746c;
+}
+
+.progressTrack {
+    width: 100%;
+    height: 6px;
+    overflow: hidden;
+    border-radius: 999px;
+    background-color: #eee8dc;
+}
+
+.progressBar {
+    height: 100%;
+    border-radius: inherit;
+    background-color: #f6b83d;
+    transition: width 0.3s ease;
+}
+
+.providersList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+@media (max-width: 767px) {
+    .container {
+        width: calc(100% - 32px);
+        margin: 20px auto 32px;
+        padding: 24px 18px;
+        border-radius: 20px;
+    }
+
+    .title {
+        font-size: 27px;
+        line-height: 1.25;
+    }
+
+    .description {
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 24px;
+    }
+
+    .section {
+        margin-bottom: 24px;
+    }
+
+    .options {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .options button {
+        width: 100%;
+        text-align: left;
+    }
+
+    .actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .actions button {
+        width: 100%;
+    }
+}
+
+.pageLayout {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
+}
+
+.sidePhotoLeft,
+.sidePhotoRight {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    align-self: stretch;
+    min-width: 0;
+    margin: 32px 0 48px;
+    gap: 24px;
+}
+
+.sidePhotoLeft img,
+.sidePhotoRight img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 24px;
+    background-color: #F6B83D;
+}
+
+@media screen and (min-width: 1280px) {
+
+    .sidePhotoLeft,
+    .sidePhotoRight {
+        display: flex;
+    }
+}
+
+@media screen and (max-width: 1279px) {
+    .pageLayout {
+        display: block;
+    }
+}

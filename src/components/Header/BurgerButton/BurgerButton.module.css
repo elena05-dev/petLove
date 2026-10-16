@@ -1,12 +1,20 @@
 .burgerButton {
     width: 32px;
     height: 32px;
-    color: #000;
+
     padding: 0;
     border: none;
     background: transparent;
     flex-shrink: 0;
     cursor: pointer;
+}
+
+.light {
+    color: #262626;
+}
+
+.yellow {
+    color: #fff;
 }
 
 .burgerButton svg {

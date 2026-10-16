@@ -22,6 +22,7 @@ header {
     display: flex;
     align-items: center;
     gap: 16px;
+    min-height: 32px;
 }
 
 .headerActions> :first-child {
@@ -53,6 +54,10 @@ header {
     .logo {
         width: 105px;
         height: 28px;
+    }
+
+    .headerActions {
+        min-height: 50px;
     }
 
     .headerActions> :first-child {

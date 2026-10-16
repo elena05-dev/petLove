@@ -5,9 +5,7 @@
 
 @media screen and (min-width: 768px) {
     .container {
-
-        max-width: 704px;
-        width: 100%;
+        width: calc(100% - 64px);
     }
 }
 
@@ -15,5 +13,10 @@
     .container {
         max-width: 1216px;
         width: 100%;
+    }
+
+    .container.wide {
+        max-width: none;
+        width: calc(100% - 64px);
     }
 }

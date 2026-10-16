@@ -21,16 +21,13 @@ function UserNav() {
   }
   return (
     <div className={css.userNav}>
-      {" "}
       <button type="button" onClick={handleLogout}>
-        {" "}
-        Logout{" "}
-      </button>{" "}
+        Logout
+      </button>
       <Link to="/profile" className={css.userProfile}>
-        {" "}
         <img src={avatar} alt="User avatar" className={css.userIcon} />
-        <span className={css.userName}>{user?.name}</span>{" "}
-      </Link>{" "}
+        <span className={css.userName}>{user?.name}</span>
+      </Link>
     </div>
   );
 }

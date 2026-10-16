@@ -1,11 +1,11 @@
 import css from "./BurgerButton.module.css";
 import sprite from "../../../assets/icons/symbol-defs.svg";
 
-function BurgerButton({ onClick }) {
+function BurgerButton({ onClick, variant }) {
   return (
     <button
       type="button"
-      className={css.burgerButton}
+      className={`${css.burgerButton} ${css[variant]}`}
       aria-label="Open menu"
       onClick={onClick}
     >

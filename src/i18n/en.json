@@ -1,0 +1,18 @@
+{
+    "common": {
+        "home": "Home",
+        "login": "Log in",
+        "register": "Register",
+        "language": "Language"
+    },
+    "findHelp": {
+        "title": "Where do you need help?",
+        "description": "Choose a city and tell us about any additional preferences.",
+        "city": "City",
+        "cityPlaceholder": "For example, Afula",
+        "notes": "Additional preferences",
+        "notesPlaceholder": "For example, your pet is afraid of other animals",
+        "search": "Find matching options",
+        "back": "Back"
+    }
+}
