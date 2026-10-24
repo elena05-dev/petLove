@@ -9,7 +9,6 @@
 }
 
 .userNav button {
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -67,6 +66,16 @@
     color: #262626;
 }
 
+.menuUserNav button {
+    background: #fff4df;
+    color: #f6b83d;
+}
+
+.menuUserNav button:hover,
+.menuUserNav button:focus {
+    color: #ffff;
+}
+
 @media screen and (min-width: 768px) and (max-width: 1279px) {
     .userNav {
         width: auto;
@@ -92,4 +101,59 @@
         display: block;
         color: #fff;
     }
+}
+
+@media screen and (max-width: 767px) {
+    .userNav {
+        width: auto;
+        height: 32px;
+        align-items: center;
+    }
+
+    .userNav button {
+        display: none;
+    }
+
+    .userProfile {
+        width: 32px;
+        height: 32px;
+        gap: 0;
+    }
+
+    .userIcon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .userName {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .userNav button {
+        padding: 10px 15px;
+    }
+}
+
+.menuUserNav {
+    position: absolute;
+    right: 20px;
+    bottom: 40px;
+    width: 178px;
+    height: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+}
+
+.menuUserNav button {
+    display: flex;
+    width: 178px;
+    height: 42px;
+    padding: 12px 20px;
+}
+
+.menuUserNav .userProfile {
+    display: none;
 }

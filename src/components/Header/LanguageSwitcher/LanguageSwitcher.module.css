@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     flex-shrink: 0;
+    margin-right: 4px;
 }
 
 .label {
@@ -12,10 +13,10 @@
 
 
 .select {
-    max-width: 78px;
-    padding: 6px 4px;
-    border: 1px solid currentColor;
-    border-radius: 8px;
+    max-width: 70px;
+    padding: 6px 6px;
+    border: 1px solid rgba(38, 38, 38, 0.4);
+    border-radius: 30px;
     background: transparent;
     color: inherit;
     font: inherit;
@@ -38,6 +39,6 @@
 
     .select {
         max-width: 90px;
-        padding: 8px 6px;
+        padding: 10px 2px;
     }
 }

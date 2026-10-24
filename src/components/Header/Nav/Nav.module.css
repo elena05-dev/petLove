@@ -8,19 +8,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
     padding: 15px 20px;
-
     border: 1px solid #26262626;
     border-radius: 30px;
-
     font-family: "Manrope", sans-serif;
     font-weight: 500;
     font-size: 16px;
     line-height: 20px;
     letter-spacing: -0.03em;
     color: #262626;
-
     text-decoration: none;
 }
 
@@ -32,15 +28,13 @@
 
 .mobileNav {
     position: absolute;
-    top: 236px;
+    top: clamp(120px, 25vh, 190px);
     right: 49px;
-
     display: flex;
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
     gap: 10px;
-
     width: 119px;
     height: 164px;
 }
@@ -48,7 +42,7 @@
 .mobileNav a {
     width: 119px;
     height: 48px;
-    padding: 14px 10px;
+    padding: 10px 5px;
     box-sizing: border-box;
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 30px;
@@ -88,11 +82,11 @@
         right: auto;
         left: 50%;
         transform: translateX(-50%);
-        top: 369px
+        top: clamp(200px, 35vh, 300px);
     }
 
     .mobileNav a {
         width: 120px;
-        height: 170px;
+        height: 48px;
     }
 }

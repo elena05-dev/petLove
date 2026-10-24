@@ -43,6 +43,7 @@ function Header({ variant, wide = false }) {
         <MobileMenu
           onClose={() => setIsMenuOpen(false)}
           variant={menuVariant}
+          isLoggedIn={isLoggedIn}
         />
       )}
     </header>

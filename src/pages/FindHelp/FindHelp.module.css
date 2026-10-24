@@ -319,3 +319,35 @@
         display: block;
     }
 }
+
+.citySuggestions {
+    margin: 4px 0 0;
+    padding: 4px;
+    list-style: none;
+    background-color: #ffffff;
+    border: 1px solid #f6b83d;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.citySuggestions li {
+    margin: 0;
+    padding: 0;
+}
+
+.citySuggestions button {
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: transparent;
+    color: #262626;
+    text-align: left;
+    cursor: pointer;
+}
+
+.citySuggestions button:hover,
+.citySuggestions button:focus-visible {
+    background-color: #fff4df;
+    outline: none;
+}

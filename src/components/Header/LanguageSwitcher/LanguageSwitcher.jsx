@@ -10,7 +10,7 @@ const languages = [
 ];
 
 function LanguageSwitcher() {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   const currentLanguage = (i18n.resolvedLanguage || i18n.language).split(
     "-",
@@ -47,7 +47,7 @@ function LanguageSwitcher() {
               : "ru"
           }
           onChange={handleLanguageChange}
-          aria-label="Choose language"
+          aria-label={t("common.language")}
         >
           {languages.map((language) => (
             <option key={language.value} value={language.value}>

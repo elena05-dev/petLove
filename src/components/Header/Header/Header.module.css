@@ -25,9 +25,7 @@ header {
     min-height: 32px;
 }
 
-.headerActions> :first-child {
-    display: none;
-}
+
 
 .burgerButton {
     width: 32px;

@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { providers } from "../../data/providers";
 import ProviderCard from "../../components/ProviderCard/ProviderCard";
+import { cities } from "../../data/cities";
 import Container from "../../components/Container/Container";
 import Header from "../../components/Header/Header/Header";
 import catPhoto from "../../assets/images/cat.webp";
@@ -28,25 +29,48 @@ function FindHelp() {
   const [petSize, setPetSize] = useState("");
   const [petSocial, setPetSocial] = useState("");
   const [city, setCity] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
   const [notes, setNotes] = useState("");
   const [showResults, setShowResults] = useState(false);
+
+  const filteredCities = cities.filter((cityItem) =>
+    cityItem.aliases.some((alias) =>
+      alias.toLowerCase().includes(city.trim().toLowerCase()),
+    ),
+  );
+
   function handlePetTypeChange(newPetType) {
     if (petType !== newPetType) {
       setPetAge("");
       setPetSize("");
       setPetSocial("");
+      setShowResults(false);
       setPetType(newPetType);
     }
+  }
+
+  function handleReset() {
+    setPetType("");
+    setStep(1);
+    setServiceType("");
+    setPetAge("");
+    setPetSize("");
+    setPetSocial("");
+    setCity("");
+    setSelectedCity("");
+    setNotes("");
+    setShowResults(false);
   }
 
   const matchingProviders = providers.filter((provider) => {
     const matchesPet = provider.petType === petType;
     const matchesService = provider.serviceType === serviceType;
     const matchesCity =
-      provider.city.trim().toLowerCase() === city.trim().toLowerCase();
+      provider.city.trim().toLowerCase() === selectedCity.trim().toLowerCase();
 
     return matchesPet && matchesService && matchesCity;
   });
+
   console.log("Ответы анкеты:", {
     petType,
     serviceType,
@@ -66,80 +90,73 @@ function FindHelp() {
           <div className={css.container}>
             {showResults ? (
               <section className={css.section}>
-                <h1 className={css.title}>
-                  Подбираем помощь для вашего питомца
-                </h1>
+                <h1 className={css.title}>{t("findHelp.resultsTitle")}</h1>
 
                 <p className={css.description}>
-                  Мы ищем подходящие варианты в городе {city}.
+                  {t("findHelp.resultsDescription", { city })}
                 </p>
 
-                <h2 className={css.sectionTitle}>Ваш запрос</h2>
+                <h2 className={css.sectionTitle}>
+                  {t("findHelp.yourRequest")}
+                </h2>
 
                 <p className={css.resultItem}>
-                  <span className={css.resultLabel}>Питомец:</span>
-                  <span className={css.resultValue}>
-                    {petType === "dog" ? "Собака" : "Кошка"}
+                  <span className={css.resultLabel}>
+                    {t("findHelp.petLabel")}
                   </span>
-                </p>
-
-                <p className={css.resultItem}>
-                  <span className={css.resultLabel}>Услуга:</span>
                   <span className={css.resultValue}>
-                    {
-                      {
-                        boarding: "Передержка",
-                        walking: "Выгул",
-                        grooming: "Груминг",
-                        training: "Дрессировка и поведение",
-                        "special-care": "Особый уход",
-                      }[serviceType]
-                    }
-                  </span>
-                </p>
-
-                <p className={css.resultItem}>
-                  <span className={css.resultLabel}>Возраст:</span>
-                  <span className={css.resultValue}>{petAge} г.</span>
-                </p>
-
-                <p className={css.resultItem}>
-                  <span className={css.resultLabel}>Размер:</span>
-                  <span className={css.resultValue}>
-                    {
-                      {
-                        small: "Маленький",
-                        medium: "Средний",
-                        large: "Большой",
-                      }[petSize]
-                    }
-                  </span>
-                </p>
-
-                <p className={css.resultItem}>
-                  <span className={css.resultLabel}>Отношение к животным:</span>
-                  <span className={css.resultValue}>
-                    {
-                      {
-                        friendly: "Хорошо",
-                        cautious: "Нужна осторожность",
-                        unfriendly: "Не принимает других животных",
-                        unknown: "Неизвестно",
-                      }[petSocial]
-                    }
+                    {t(`findHelp.${petType}`)}
                   </span>
                 </p>
 
                 <p className={css.resultItem}>
                   <span className={css.resultLabel}>
-                    Дополнительные пожелания:
+                    {t("findHelp.serviceLabel")}
                   </span>
                   <span className={css.resultValue}>
-                    {notes || "Не указаны"}
+                    {t(
+                      `findHelp.services.${serviceType === "special-care" ? "specialCare" : serviceType}`,
+                    )}
                   </span>
                 </p>
 
-                <h2 className={css.sectionTitle}>Подходящие специалисты</h2>
+                <p className={css.resultItem}>
+                  <span className={css.resultLabel}>
+                    {t("findHelp.ageLabel")}
+                  </span>
+                  <span className={css.resultValue}>
+                    {petAge} {t("findHelp.ageUnit")}
+                  </span>
+                </p>
+
+                <p className={css.resultItem}>
+                  <span className={css.resultLabel}>
+                    {t("findHelp.sizeLabel")}
+                  </span>
+                  <span className={css.resultValue}>
+                    {t(`findHelp.sizes.${petSize}`)}
+                  </span>
+                </p>
+
+                <p className={css.resultItem}>
+                  <span className={css.resultLabel}>
+                    {t("findHelp.socialLabel")}
+                  </span>
+                  <span className={css.resultValue}>
+                    {t(`findHelp.socialOptions.${petSocial}`)}
+                  </span>
+                </p>
+
+                <p className={css.resultItem}>
+                  <span className={css.resultLabel}>{t("findHelp.notes")}</span>
+                  <span className={css.resultValue}>
+                    {notes || t("findHelp.notesEmpty")}
+                  </span>
+                </p>
+
+                <h2 className={css.sectionTitle}>
+                  {t("findHelp.providersTitle")}
+                </h2>
 
                 {matchingProviders.length > 0 ? (
                   <div className={css.providersList}>
@@ -148,10 +165,7 @@ function FindHelp() {
                     ))}
                   </div>
                 ) : (
-                  <p className={css.description}>
-                    Пока мы не нашли совпадений по всем параметрам. Попробуйте
-                    изменить город или выбрать другую услугу.
-                  </p>
+                  <p className={css.description}>{t("findHelp.noResults")}</p>
                 )}
                 <div className={css.actions}>
                   <button
@@ -161,7 +175,7 @@ function FindHelp() {
                       setStep(1);
                     }}
                   >
-                    Назад к анкете
+                    {t("findHelp.backToForm")}
                   </button>
                 </div>
               </section>
@@ -169,14 +183,14 @@ function FindHelp() {
               <>
                 <div className={css.progress}>
                   <div className={css.progressInfo}>
-                    <span>Поиск помощи</span>
-                    <span>Шаг {step} из 4</span>
+                    <span>{t("findHelp.progressTitle")}</span>
+                    <span>{t("findHelp.stepProgress", { step })}</span>
                   </div>
 
                   <div
                     className={css.progressTrack}
                     role="progressbar"
-                    aria-label="Прогресс заполнения анкеты"
+                    aria-label={t("findHelp.progressLabel")}
                     aria-valuemin={1}
                     aria-valuemax={4}
                     aria-valuenow={step}
@@ -189,15 +203,14 @@ function FindHelp() {
                 </div>
                 {step === 1 && (
                   <>
-                    <h1 className={css.title}>
-                      Найдём подходящую помощь для вашего питомца
-                    </h1>
+                    <h1 className={css.title}>{t("findHelp.step1Title")}</h1>
                     <p className={css.description}>
-                      Расскажите немного о питомце, и мы поможем найти
-                      подходящие варианты.
+                      {t("findHelp.step1Description")}
                     </p>
                     <section className={css.section}>
-                      <h2 className={css.sectionTitle}>Кому нужна помощь?</h2>
+                      <h2 className={css.sectionTitle}>
+                        {t("findHelp.petQuestion")}
+                      </h2>
 
                       <div className={css.options}>
                         <button
@@ -206,7 +219,7 @@ function FindHelp() {
                           onClick={() => handlePetTypeChange("dog")}
                         >
                           <Dog size={22} strokeWidth={1.7} aria-hidden="true" />
-                          <span>Собака</span>
+                          <span>{t("findHelp.dog")}</span>
                         </button>
                         <button
                           type="button"
@@ -214,28 +227,30 @@ function FindHelp() {
                           onClick={() => handlePetTypeChange("cat")}
                         >
                           <Cat size={22} strokeWidth={1.7} aria-hidden="true" />
-                          <span>Кошка</span>
+                          <span>{t("findHelp.cat")}</span>
                         </button>
                       </div>
                     </section>
                     <div className={css.actions}>
+                      <button type="button" onClick={handleReset}>
+                        {t("findHelp.reset")}
+                      </button>
+
                       <button
                         type="button"
                         disabled={!petType}
                         onClick={() => setStep(2)}
                       >
-                        Продолжить
+                        {t("findHelp.continue")}
                       </button>
                     </div>
                   </>
                 )}
                 {step === 2 && (
                   <section className={css.section}>
-                    <h1 className={css.title}>
-                      Какая помощь нужна вашему питомцу?
-                    </h1>
+                    <h1 className={css.title}>{t("findHelp.step2Title")}</h1>
                     <p className={css.description}>
-                      Выберите услугу, которую вы ищете.
+                      {t("findHelp.step2Description")}
                     </p>
 
                     <div className={css.options}>
@@ -247,7 +262,7 @@ function FindHelp() {
                         onClick={() => setServiceType("boarding")}
                       >
                         <House size={20} strokeWidth={1.7} aria-hidden="true" />
-                        Передержка
+                        {t("findHelp.services.boarding")}
                       </button>
 
                       <button
@@ -262,7 +277,7 @@ function FindHelp() {
                           strokeWidth={1.7}
                           aria-hidden="true"
                         />
-                        Выгул
+                        {t("findHelp.services.walking")}
                       </button>
 
                       <button
@@ -277,7 +292,7 @@ function FindHelp() {
                           strokeWidth={1.7}
                           aria-hidden="true"
                         />
-                        Груминг
+                        {t("findHelp.services.grooming")}
                       </button>
 
                       <button
@@ -292,7 +307,7 @@ function FindHelp() {
                           strokeWidth={1.7}
                           aria-hidden="true"
                         />
-                        Дрессировка и поведение
+                        {t("findHelp.services.training")}
                       </button>
 
                       <button
@@ -303,12 +318,12 @@ function FindHelp() {
                         onClick={() => setServiceType("special-care")}
                       >
                         <Heart size={20} strokeWidth={1.7} aria-hidden="true" />
-                        Особый уход
+                        {t("findHelp.services.specialCare")}
                       </button>
                     </div>
                     <div className={css.actions}>
                       <button type="button" onClick={() => setStep(1)}>
-                        Назад
+                        {t("findHelp.backButton")}
                       </button>
 
                       <button
@@ -316,19 +331,19 @@ function FindHelp() {
                         disabled={!serviceType}
                         onClick={() => setStep(3)}
                       >
-                        Продолжить
+                        {t("findHelp.continue")}
                       </button>
                     </div>
                   </section>
                 )}
                 {step === 3 && (
                   <section className={css.section}>
-                    <h1 className={css.title}>Расскажите о питомце</h1>
+                    <h1 className={css.title}>{t("findHelp.step3Title")}</h1>
                     <p className={css.description}>
-                      Это поможет подобрать более подходящие варианты.
+                      {t("findHelp.step3Description")}
                     </p>
 
-                    <label htmlFor="petAge">Сколько лет питомцу?</label>
+                    <label htmlFor="petAge">{t("findHelp.petAge")}</label>
                     <input
                       id="petAge"
                       type="number"
@@ -336,10 +351,12 @@ function FindHelp() {
                       max="100"
                       value={petAge}
                       onChange={(event) => setPetAge(event.target.value)}
-                      placeholder="Возраст в годах"
+                      placeholder={t("findHelp.agePlaceholder")}
                     />
 
-                    <h2 className={css.sectionTitle}>Какого он размера?</h2>
+                    <h2 className={css.sectionTitle}>
+                      {t("findHelp.petSize")}
+                    </h2>
 
                     <div className={css.options}>
                       <button
@@ -347,7 +364,7 @@ function FindHelp() {
                         className={petSize === "small" ? css.selected : ""}
                         onClick={() => setPetSize("small")}
                       >
-                        Маленький
+                        {t("findHelp.sizes.small")}
                       </button>
 
                       <button
@@ -355,7 +372,7 @@ function FindHelp() {
                         className={petSize === "medium" ? css.selected : ""}
                         onClick={() => setPetSize("medium")}
                       >
-                        Средний
+                        {t("findHelp.sizes.medium")}
                       </button>
 
                       <button
@@ -363,12 +380,12 @@ function FindHelp() {
                         className={petSize === "large" ? css.selected : ""}
                         onClick={() => setPetSize("large")}
                       >
-                        Большой
+                        {t("findHelp.sizes.large")}
                       </button>
                     </div>
 
                     <h2 className={css.sectionTitle}>
-                      Как питомец относится к другим животным?
+                      {t("findHelp.petSocial")}
                     </h2>
 
                     <div className={css.options}>
@@ -377,7 +394,7 @@ function FindHelp() {
                         className={petSocial === "friendly" ? css.selected : ""}
                         onClick={() => setPetSocial("friendly")}
                       >
-                        Хорошо
+                        {t("findHelp.socialOptions.friendly")}
                       </button>
 
                       <button
@@ -385,7 +402,7 @@ function FindHelp() {
                         className={petSocial === "cautious" ? css.selected : ""}
                         onClick={() => setPetSocial("cautious")}
                       >
-                        Нужна осторожность
+                        {t("findHelp.socialOptions.cautious")}
                       </button>
 
                       <button
@@ -395,7 +412,7 @@ function FindHelp() {
                         }
                         onClick={() => setPetSocial("unfriendly")}
                       >
-                        Не принимает других животных
+                        {t("findHelp.socialOptions.unfriendly")}
                       </button>
 
                       <button
@@ -403,13 +420,13 @@ function FindHelp() {
                         className={petSocial === "unknown" ? css.selected : ""}
                         onClick={() => setPetSocial("unknown")}
                       >
-                        Не знаю
+                        {t("findHelp.socialOptions.unknown")}
                       </button>
                     </div>
 
                     <div className={css.actions}>
                       <button type="button" onClick={() => setStep(2)}>
-                        Назад
+                        {t("findHelp.backButton")}
                       </button>
 
                       <button
@@ -417,7 +434,7 @@ function FindHelp() {
                         disabled={petAge === "" || !petSize || !petSocial}
                         onClick={() => setStep(4)}
                       >
-                        Продолжить
+                        {t("findHelp.continue")}
                       </button>
                     </div>
                   </section>
@@ -430,15 +447,48 @@ function FindHelp() {
                     </p>
 
                     <label htmlFor="city">{t("findHelp.city")}</label>
+
                     <input
                       id="city"
                       type="text"
                       value={city}
-                      onChange={(event) => setCity(event.target.value)}
-                      placeholder="Например, Афула"
+                      onChange={(event) => {
+                        setCity(event.target.value);
+                        setSelectedCity("");
+                      }}
+                      placeholder={t("findHelp.cityPlaceholder")}
                     />
 
-                    <label htmlFor="notes">{t("findHelp.city")}</label>
+                    {city.trim() &&
+                      !selectedCity &&
+                      filteredCities.length > 0 && (
+                        <ul className={css.citySuggestions}>
+                          {filteredCities.map((cityItem) => {
+                            const matchingAlias = cityItem.aliases.find(
+                              (alias) =>
+                                alias
+                                  .toLowerCase()
+                                  .includes(city.trim().toLowerCase()),
+                            );
+
+                            return (
+                              <li key={cityItem.name}>
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    setCity(matchingAlias);
+                                    setSelectedCity(cityItem.name);
+                                  }}
+                                >
+                                  {matchingAlias}
+                                </button>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      )}
+
+                    <label htmlFor="notes">{t("findHelp.notes")}</label>
                     <textarea
                       id="notes"
                       value={notes}
@@ -454,7 +504,7 @@ function FindHelp() {
 
                       <button
                         type="button"
-                        disabled={!city.trim()}
+                        disabled={!selectedCity}
                         onClick={() => setShowResults(true)}
                       >
                         {t("findHelp.search")}
@@ -466,7 +516,6 @@ function FindHelp() {
             )}
           </div>
           <div className={css.sidePhotoRight}>
-            {" "}
             <img src={dogPhoto} alt="" aria-hidden="true" />
             <img src={secondCatPhoto} alt="" aria-hidden="true" />
           </div>

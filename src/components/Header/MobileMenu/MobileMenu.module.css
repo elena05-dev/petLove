@@ -1,11 +1,21 @@
-.mobileMenu {
+.menuOverlay {
     position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: transparent;
+}
+
+.mobileMenu {
+    position: absolute;
     top: 0;
     right: 0;
-
     width: 218px;
     height: 100vh;
-
+    height: 100dvh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
 
 }
 
@@ -43,6 +53,8 @@
 .closeButton.light img {
     filter: none;
 }
+
+
 
 @media screen and (min-width: 768px) {
     .mobileMenu {
