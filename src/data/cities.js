@@ -1,6 +1,7 @@
 export const cities = [
   {
     name: "Afula",
+    code: "afula",
     aliases: ["Афула", "עפולה", "Afula"],
   },
   {

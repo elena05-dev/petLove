@@ -31,7 +31,7 @@ function ProviderCard({ provider }) {
 
         <p className={css.location}>
           <MapPin size={16} aria-hidden="true" />
-          <span>{provider.city}</span>
+          <span>{t(`findHelp.cities.${provider.city}`)}</span>
         </p>
 
         <p className={css.description}>{provider.description}</p>
@@ -50,7 +50,7 @@ function ProviderCard({ provider }) {
           aria-haspopup="dialog"
           aria-expanded={isDetailsOpen}
         >
-          Подробнее о специалисте
+          {t("findHelp.providerDetails")}
         </button>
       </div>
 
@@ -65,7 +65,7 @@ function ProviderCard({ provider }) {
             className={css.closeButton}
             type="button"
             onClick={() => dialogRef.current?.close()}
-            aria-label="Закрыть подробную информацию"
+            aria-label={t("findHelp.closeDetails")}
           >
             <X size={20} aria-hidden="true" />
           </button>
@@ -80,7 +80,7 @@ function ProviderCard({ provider }) {
           </h2>
           <p className={css.dialogLocation}>
             <MapPin size={16} aria-hidden="true" />
-            <span>{provider.city}</span>
+            <span>{t(`findHelp.cities.${provider.city}`)}</span>
           </p>
           <dl className={css.detailsList}>
             <div>

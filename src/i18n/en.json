@@ -64,9 +64,14 @@
         "providersTitle": "Matching providers",
         "noResults": "We haven’t found a match for all of these details yet. Try changing the city or choosing another service.",
         "backToForm": "Back to form",
+        "providerDetails": "More about this provider",
+        "closeDetails": "Close provider details",
         "title": "Where do you need help?",
         "description": "Choose a city and tell us about any additional preferences.",
         "city": "City",
+        "cities": {
+            "afula": "Afula"
+        },
         "cityPlaceholder": "For example, Afula",
         "notes": "Additional preferences",
         "notesPlaceholder": "For example, your pet is afraid of other animals",

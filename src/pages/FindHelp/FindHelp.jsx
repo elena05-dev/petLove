@@ -65,19 +65,11 @@ function FindHelp() {
   const matchingProviders = providers.filter((provider) => {
     const matchesPet = provider.petType === petType;
     const matchesService = provider.serviceType === serviceType;
-    const matchesCity =
-      provider.city.trim().toLowerCase() === selectedCity.trim().toLowerCase();
+    const matchesCity = provider.city === selectedCity;
 
     return matchesPet && matchesService && matchesCity;
   });
 
-  console.log("Ответы анкеты:", {
-    petType,
-    serviceType,
-    city,
-  });
-
-  console.log("Найденные специалисты:", matchingProviders);
   return (
     <main>
       <Header variant="light" />
@@ -477,7 +469,13 @@ function FindHelp() {
                                   type="button"
                                   onClick={() => {
                                     setCity(matchingAlias);
-                                    setSelectedCity(cityItem.name);
+                                    setSelectedCity(
+                                      cityItem.code ??
+                                        cityItem.name
+                                          .trim()
+                                          .toLowerCase()
+                                          .replace(/\s+/g, "-"),
+                                    );
                                   }}
                                 >
                                   {matchingAlias}
