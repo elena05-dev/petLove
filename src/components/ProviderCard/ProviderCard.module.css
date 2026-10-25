@@ -40,6 +40,18 @@
     line-height: 1.3;
 }
 
+.demoNotice {
+    margin: 0 0 10px;
+    padding: 5px 10px;
+    border-radius: 12px;
+    background-color: #fff1cf;
+    color: #735414;
+    font-family: "Manrope", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
 .location {
     display: flex;
     align-items: center;

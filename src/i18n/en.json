@@ -62,6 +62,7 @@
         "notesLabel": "Additional preferences:",
         "notesEmpty": "Not specified",
         "providersTitle": "Matching providers",
+        "demoProfile": "Demo profile (example)",
         "noResults": "We haven’t found a match for all of these details yet. Try changing the city or choosing another service.",
         "backToForm": "Back to form",
         "providerDetails": "More about this provider",

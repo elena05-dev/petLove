@@ -1,12 +1,30 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MapPin, CheckCircle2, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { lockBodyScroll } from "../../lib/bodyScrollLock";
+import { cities } from "../../data/cities";
 import css from "./ProviderCard.module.css";
 
 function ProviderCard({ provider }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const language = (i18n.resolvedLanguage || i18n.language).split("-")[0];
+  const city = cities.find((cityItem) => cityItem.code === String(provider.city));
+  const cityName = city
+    ? city[`name${language.charAt(0).toUpperCase()}${language.slice(1)}`] ||
+      city.nameEn ||
+      city.nameHe ||
+      city.nameRu ||
+      city.nameAr ||
+      city.code
+    : String(provider.city);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   const dialogRef = useRef(null);
+
+  useEffect(() => {
+    if (!isDetailsOpen) return;
+
+    return lockBodyScroll();
+  }, [isDetailsOpen]);
 
   const serviceKey =
     provider.serviceType === "special-care" ? "specialCare" : provider.serviceType;
@@ -29,9 +47,13 @@ function ProviderCard({ provider }) {
       <div className={css.content}>
         <h2 className={css.name}>{provider.name}</h2>
 
+        {provider.isDemo && (
+          <p className={css.demoNotice}>{t("findHelp.demoProfile")}</p>
+        )}
+
         <p className={css.location}>
           <MapPin size={16} aria-hidden="true" />
-          <span>{t(`findHelp.cities.${provider.city}`)}</span>
+          <span>{cityName}</span>
         </p>
 
         <p className={css.description}>{provider.description}</p>
@@ -80,7 +102,7 @@ function ProviderCard({ provider }) {
           </h2>
           <p className={css.dialogLocation}>
             <MapPin size={16} aria-hidden="true" />
-            <span>{t(`findHelp.cities.${provider.city}`)}</span>
+            <span>{cityName}</span>
           </p>
           <dl className={css.detailsList}>
             <div>

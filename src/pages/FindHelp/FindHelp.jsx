@@ -21,7 +21,8 @@ import secondCatPhoto from "../../assets/images/image-dog_big_tab.webp";
 import css from "./FindHelp.module.css";
 
 function FindHelp() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const language = (i18n.resolvedLanguage || i18n.language).split("-")[0];
   const [petType, setPetType] = useState("");
   const [step, setStep] = useState(1);
   const [serviceType, setServiceType] = useState("");
@@ -34,10 +35,23 @@ function FindHelp() {
   const [showResults, setShowResults] = useState(false);
 
   const filteredCities = cities.filter((cityItem) =>
-    cityItem.aliases.some((alias) =>
-      alias.toLowerCase().includes(city.trim().toLowerCase()),
-    ),
+    [cityItem.nameRu, cityItem.nameEn, cityItem.nameHe, cityItem.nameAr]
+      .filter(Boolean)
+      .some((name) =>
+        name.toLowerCase().includes(city.trim().toLowerCase()),
+      ),
   );
+
+  function getCityName(cityItem) {
+    return (
+      cityItem[`name${language.charAt(0).toUpperCase()}${language.slice(1)}`] ||
+      cityItem.nameEn ||
+      cityItem.nameHe ||
+      cityItem.nameRu ||
+      cityItem.nameAr ||
+      cityItem.code
+    );
+  }
 
   function handlePetTypeChange(newPetType) {
     if (petType !== newPetType) {
@@ -443,6 +457,7 @@ function FindHelp() {
                     <input
                       id="city"
                       type="text"
+                      autoComplete="off"
                       value={city}
                       onChange={(event) => {
                         setCity(event.target.value);
@@ -456,29 +471,17 @@ function FindHelp() {
                       filteredCities.length > 0 && (
                         <ul className={css.citySuggestions}>
                           {filteredCities.map((cityItem) => {
-                            const matchingAlias = cityItem.aliases.find(
-                              (alias) =>
-                                alias
-                                  .toLowerCase()
-                                  .includes(city.trim().toLowerCase()),
-                            );
-
+                            const cityName = getCityName(cityItem);
                             return (
-                              <li key={cityItem.name}>
+                              <li key={cityItem.code}>
                                 <button
                                   type="button"
                                   onClick={() => {
-                                    setCity(matchingAlias);
-                                    setSelectedCity(
-                                      cityItem.code ??
-                                        cityItem.name
-                                          .trim()
-                                          .toLowerCase()
-                                          .replace(/\s+/g, "-"),
-                                    );
+                                    setCity(cityName);
+                                    setSelectedCity(cityItem.code);
                                   }}
                                 >
-                                  {matchingAlias}
+                                  {cityName}
                                 </button>
                               </li>
                             );

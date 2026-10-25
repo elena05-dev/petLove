@@ -1,39 +1,30 @@
 export const cities = [
   {
-    name: "Afula",
-    code: "afula",
-    aliases: ["Афула", "עפולה", "Afula"],
+    code: "7700",
+    nameHe: "עפולה",
+    nameEn: "Afula",
+    nameRu: "Афула",
+    nameAr: "عفولا",
   },
   {
-    name: "Haifa",
-    aliases: ["Хайфа", "חיפה", "Haifa"],
+    code: "4000",
+    nameHe: "חיפה",
+    nameEn: "Haifa",
+    nameRu: "Хайфа",
+    nameAr: "حيفا",
   },
   {
-    name: "Tel Aviv",
-    aliases: ["Тель-Авив", "תל אביב", "Tel Aviv"],
+    code: "5000",
+    nameHe: "תל אביב -יפו",
+    nameEn: "Tel Aviv - Yafo",
+    nameRu: "Тель-Авив Яффо",
+    nameAr: "تل أبيب – يافا",
   },
   {
-    name: "Jerusalem",
-    aliases: ["Иерусалим", "ירושלים", "Jerusalem"],
-  },
-  {
-    name: "Nazareth",
-    aliases: ["Назарет", "נצרת", "Nazareth"],
-  },
-  {
-    name: "Netanya",
-    aliases: ["Нетания", "נתניה", "Netanya"],
-  },
-  {
-    name: "Beer Sheva",
-    aliases: ["Беэр-Шева", "באר שבע", "Beer Sheva"],
-  },
-  {
-    name: "Ashdod",
-    aliases: ["Ашдод", "אשדוד", "Ashdod"],
-  },
-  {
-    name: "Rishon LeZion",
-    aliases: ["Ришон-ле-Цион", "ראשון לציון", "Rishon LeZion"],
+    code: "3000",
+    nameHe: "ירושלים",
+    nameEn: "Jerusalem",
+    nameRu: "Иерусалим",
+    nameAr: "أورشليم القدس",
   },
 ];
