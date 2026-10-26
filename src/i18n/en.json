@@ -1,4 +1,13 @@
 {
+    "home": {
+        "hero": {
+            "title": "Take good <span>care</span> of your small pets",
+            "description": "Choosing a pet for your home is a choice that is meant to enrich your life with immeasurable joy and tenderness."
+        },
+        "actions": {
+            "findHelp": "Find help"
+        }
+    },
     "common": {
         "home": "Home",
         "login": "Log in",

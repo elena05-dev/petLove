@@ -1,6 +1,8 @@
 import css from "./Home.module.css";
 import Container from "../../components/Container/Container";
 import Header from "../../components/Header/Header/Header";
+import { Link } from "react-router-dom";
+import { Trans, useTranslation } from "react-i18next";
 import heroMobile1x from "../../assets/images/hero-mobile@1x.webp";
 import heroMobile2x from "../../assets/images/hero-mobile@2x.webp";
 import heroTablet1x from "../../assets/images/hero-tablet@1x.webp";
@@ -9,6 +11,8 @@ import heroDesktop1x from "../../assets/images/hero-desktop@1x.webp";
 import heroDesktop2x from "../../assets/images/hero-desktop@2x.webp";
 
 function Home() {
+  const { t } = useTranslation();
+
   return (
     <main>
       <Container wide>
@@ -16,12 +20,19 @@ function Home() {
           <section className={css.hero}>
             <Header variant="yellow" wide />
             <div className={css.heroText}>
-              <h1 className={css.heroTitle}>
-                Take good <span>care</span> of your small pets
-              </h1>
+              <div className={css.heroCopy}>
+                <h1 className={css.heroTitle}>
+                  <Trans
+                    i18nKey="home.hero.title"
+                    components={{ span: <span /> }}
+                  />
+                </h1>
+                <Link className={css.heroAction} to="/find-help">
+                  {t("home.actions.findHelp")}
+                </Link>
+              </div>
               <p className={css.heroDescription}>
-                Choosing a pet for your home is a choice that is meant to enrich
-                your life with immeasurable joy and tenderness.
+                {t("home.hero.description")}
               </p>
             </div>
           </section>
